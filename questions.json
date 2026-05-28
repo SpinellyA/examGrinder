@@ -1,0 +1,2555 @@
+{
+  "questions": [
+    {
+      "id": 1,
+      "week": "Week 1-2",
+      "topic": "Instruction Set Architectures",
+      "question": "What is stored in data registers?",
+      "choices": [
+        "The current instruction",
+        "The current program",
+        "The current data"
+      ],
+      "answer": "The current data",
+      "explanation": "The data registers (or Register File) store the pieces of data that are being used by the instructions. Data that doesn't fit is stored in the Memory. However, you must use load/store instructions to access the Memory and it is much slower and uses much more energy than the Register File."
+    },
+    {
+      "id": 2,
+      "week": "Week 1-2",
+      "topic": "Instruction Set Architectures",
+      "question": "What instruction does not need to specify three registers?",
+      "choices": [
+        "add",
+        "addi",
+        "sub"
+      ],
+      "answer": "addi",
+      "explanation": "Addi uses two registers (the source and the destination) but uses an immediate, or constant value, instead of the third source."
+    },
+    {
+      "id": 3,
+      "week": "Week 1-2",
+      "topic": "Instruction Set Architectures",
+      "question": "What does add r3, r1, r0 do?",
+      "choices": [
+        "Put r0 + r3 -> r1",
+        "Put r1 + r3 -> r0",
+        "Move r1 -> r3"
+      ],
+      "answer": "Move r1 -> r3",
+      "explanation": "Two sources (r1 and r0) and one destination (r3). So r3 <- r1 + r0. But r0 is always 0. The same as r3 <- r1 + 0. Or move r1 -> r3."
+    },
+    {
+      "id": 4,
+      "week": "Week 1-2",
+      "topic": "Instruction Set Architectures",
+      "question": "How do I store the results a+b into c? (R1 = a; r2 = b; R3 = c)",
+      "choices": [
+        "add R1, R2, R0",
+        "add R3, R2, R1",
+        "add R2, R1, R3"
+      ],
+      "answer": "add R3, R2, R1",
+      "explanation": "Add r3, r2, r1."
+    },
+    {
+      "id": 5,
+      "week": "Week 1-2",
+      "topic": "Instruction Set Architectures",
+      "question": "How many other registers are required to calculate: R5 = (R5 + R6) + R7?",
+      "choices": [
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "answer": "0",
+      "explanation": "0, where we can use r5 to hold results of r5+r6, then add r7."
+    },
+    {
+      "id": 6,
+      "week": "Week 1-2",
+      "topic": "Instruction Set Architectures",
+      "question": "Why is the largest address for a 32-bit machine 2^32 - 1?",
+      "choices": [
+        "We start counting at 0",
+        "There's an error in the slide",
+        "2^32 is reserved for errors"
+      ],
+      "answer": "We start counting at 0",
+      "explanation": "0000...0000 -> 0, 0000...0001 -> 1, ..., 1111...1111 -> 2^32-1. 10000...0000 = 2^32 but needs 33 bits."
+    },
+    {
+      "id": 7,
+      "week": "Week 1-2",
+      "topic": "Instruction Set Architectures",
+      "question": "How many memory locations do we need to fill a register in the Register File?",
+      "choices": [
+        "1",
+        "2",
+        "4"
+      ],
+      "answer": "4",
+      "explanation": "Each entry in the register file is 32-bits. So we need 4 8-bit locations from the memory to make 32-bits for the register file."
+    },
+    {
+      "id": 8,
+      "week": "Week 1-2",
+      "topic": "Instruction Set Architectures",
+      "question": "What are the last 2 bits of a word address?",
+      "choices": [
+        "Depends on the address",
+        "Always 11",
+        "Always 00"
+      ],
+      "answer": "Always 00",
+      "explanation": "Words are 4-bytes long, so every word address is an even multiple of 4 bytes. In binary, this is the same as having the last two bits be zero."
+    },
+    {
+      "id": 9,
+      "week": "Week 1-2",
+      "topic": "Instruction Set Architectures",
+      "question": "Is it reasonable that the Memory is much slower than the Register File?",
+      "choices": [
+        "No, each memory location is only 8 bits wide and each register is 32 bits wide, so registers should be slower.",
+        "Yes, there are 4 billion memory locations and only 32 register locations so memory should be slower.",
+        "Unfair question: You haven't told me how they are built."
+      ],
+      "answer": "Yes, there are 4 billion memory locations and only 32 register locations so memory should be slower.",
+      "explanation": "The memory is 35 million times larger than the register file, so it will clearly be slower. It turns out registers are about 200x faster."
+    },
+    {
+      "id": 10,
+      "week": "Week 1-2",
+      "topic": "Instruction Set Architectures",
+      "question": "How many possible ways could the following 3-instruction program be executed if the processor didn't promise sequential execution?\nadd r2, r3, r4 / addi r3, r2, 12 / sub r4, r3, r2",
+      "choices": [
+        "1. You can't change the order without breaking the program.",
+        "Unlimited. If it's not sequential it could be in any order.",
+        "6. There are only 6 ways to order them."
+      ],
+      "answer": "6. There are only 6 ways to order them.",
+      "explanation": "3 choices for first * 2 for second * 1 for last = 3*2*1 = 6."
+    },
+    {
+      "id": 11,
+      "week": "Week 1-2",
+      "topic": "Instruction Set Architectures",
+      "question": "How much does the Program Counter increment to go to the next instruction?",
+      "choices": [
+        "1 byte",
+        "2 bytes",
+        "4 bytes",
+        "4 words"
+      ],
+      "answer": "4 bytes",
+      "explanation": "Each instruction is one word or 32 bits. Since the memory is byte-addressable, we increment the address by 4 bytes."
+    },
+    {
+      "id": 12,
+      "week": "Week 1-2",
+      "topic": "Instruction Set Architectures",
+      "question": "Where does the Register File get the information on which registers to read and write from?",
+      "choices": [
+        "From the ALU",
+        "From the Control",
+        "From the Program Counter",
+        "From Memory"
+      ],
+      "answer": "From the Control",
+      "explanation": "The control logic decodes the instruction and figures out which register file entries to use. It then tells the Register File what to read and write."
+    },
+    {
+      "id": 13,
+      "week": "Week 1-2",
+      "topic": "Instruction Set Architectures",
+      "question": "Why do we need both a memory address register and a data register to access memory?",
+      "choices": [
+        "Loads use the address and stores use the data",
+        "We need to know where to put the data as well as the data",
+        "We can't read two values from the register file at the same time"
+      ],
+      "answer": "We need to know where to put the data as well as the data",
+      "explanation": "To access memory we need the address (where in the memory to look) and what to write there or what we read from there."
+    },
+    {
+      "id": 14,
+      "week": "Week 1-2",
+      "topic": "Instruction Set Architectures",
+      "question": "Where does the offset come from in an offset load?",
+      "choices": [
+        "The instruction",
+        "The register file",
+        "The program counter",
+        "The address"
+      ],
+      "answer": "The instruction",
+      "explanation": "The Control causes the add to use the constant from inside the instruction to calculate the address."
+    },
+    {
+      "id": 15,
+      "week": "Week 1-2",
+      "topic": "Instruction Set Architectures",
+      "question": "What needs to be updated in the processor to take a branch?",
+      "choices": [
+        "The instruction",
+        "The register file",
+        "The program counter",
+        "The address"
+      ],
+      "answer": "The program counter",
+      "explanation": "On a branch we need to put the correct value in the program counter so we load the correct next instruction."
+    },
+    {
+      "id": 16,
+      "week": "Week 1-2",
+      "topic": "Instruction Set Architectures",
+      "question": "Why did we need both an unconditional jump and a conditional branch to do if-then-else?",
+      "choices": [
+        "The conditional branch is for the if part and the jump for the else part",
+        "You don't. You only need a conditional branch for the if part.",
+        "Because you always need to jump over the else part if you do the if part."
+      ],
+      "answer": "Because you always need to jump over the else part if you do the if part.",
+      "explanation": "If we didn't have the unconditional jump, then we would do both the if part (add) and then go right through to the else part (sub)."
+    },
+    {
+      "id": 17,
+      "week": "Week 1-2",
+      "topic": "Instruction Set Architectures",
+      "question": "How do we jump to label 'done' if R3 is equal to 7?",
+      "choices": [
+        "addi R3, R0, 7 / beq R3, R0, done",
+        "j done",
+        "beq R3, 7, done",
+        "addi R2, R0, 7 / beq R2, R3, done"
+      ],
+      "answer": "addi R2, R0, 7 / beq R2, R3, done",
+      "explanation": "Store 7 into a register (R2) and then compare if R3 is equal to that register. We do not have a branch instruction that compares against an immediate value."
+    },
+    {
+      "id": 18,
+      "week": "Week 3",
+      "topic": "Instruction Set Architectures 2",
+      "question": "Why are there 5 bits for each of the registers rs, rt, and rd?",
+      "choices": [
+        "Need 5 bits to specify the memory address",
+        "Need 5 bits to specify the register",
+        "Need 4 bits to specify the register and 1 bit to specify if it is read or write"
+      ],
+      "answer": "Need 5 bits to specify the register",
+      "explanation": "We have 32 registers and 2^5=32. Whether we read or write the register is defined by the field (rd vs. rs/rt) and the opcode."
+    },
+    {
+      "id": 19,
+      "week": "Week 3",
+      "topic": "Instruction Set Architectures 2",
+      "question": "How large an immediate can you have for addi? (interpreted as two's complement)",
+      "choices": [
+        "0 to 65,535 (0 to +2^16)",
+        "-32,768 to 32,767 (-2^15 to +2^15-1)",
+        "-32,767 to 32,767",
+        "0 to 31 (0 to +2^5-1)"
+      ],
+      "answer": "-32,768 to 32,767 (-2^15 to +2^15-1)",
+      "explanation": "The immediate field for I-format instructions is 16 bits. A Two's complement 16-bit number goes from -(2^15) to +(2^15-1)."
+    },
+    {
+      "id": 20,
+      "week": "Week 3",
+      "topic": "Instruction Set Architectures 2",
+      "question": "Why do we have 00 at the end of the immediate when we calculate the new instruction address for both branch and jump instructions?",
+      "choices": [
+        "Instructions are word-aligned so their addresses always end in 00",
+        "We always jump by a full instruction (4 bytes), so we multiply the offset by 4 by shifting left two places",
+        "We can jump further if the offset is in multiples of 4 bytes instead of 1",
+        "All of the above"
+      ],
+      "answer": "All of the above",
+      "explanation": "Instructions are word-aligned (4 bytes each) so addresses always end in 00. We always jump by full instructions by interpreting the jump offset as full instructions."
+    },
+    {
+      "id": 21,
+      "week": "Week 3",
+      "topic": "Instruction Set Architectures 2",
+      "question": "How far can you jump with the immediate field in the beq/bne instructions?",
+      "choices": [
+        "-2^31 / +2^31-1 bytes (32-bits two's complement)",
+        "-2^17 / +2^17-1 instructions (18-bits two's complement)",
+        "-2^15 / +2^15-1 instructions (16-bits two's complement)",
+        "Up to +2^16 instructions (16-bits unsigned)"
+      ],
+      "answer": "-2^15 / +2^15-1 instructions (16-bits two's complement)",
+      "explanation": "The 16 bit immediate for branches is in terms of instructions (shifted left 2). This is -32,768 to +32,767 instructions."
+    },
+    {
+      "id": 22,
+      "week": "Week 3",
+      "topic": "Instruction Set Architectures 2",
+      "question": "To what address will the following instruction jump when the branch is taken? Instruction is at address 12: bne R0, R1, 16",
+      "choices": [
+        "76",
+        "32",
+        "80",
+        "28"
+      ],
+      "answer": "80",
+      "explanation": "The branch jumps to the current PC plus the immediate*4 plus 4 we always add on. 12 + 16*4 + 4 = 80."
+    },
+    {
+      "id": 23,
+      "week": "Week 3",
+      "topic": "Instruction Set Architectures 2",
+      "question": "Is the immediate sign-extended for the ori instruction?",
+      "choices": [
+        "Yes, all immediate fields are extended",
+        "No, if it was we might end up writing 1s over the upper 16 bits",
+        "Yes, but only if the number is positive"
+      ],
+      "answer": "No, if it was we might end up writing 1s over the upper 16 bits",
+      "explanation": "Logical operations don't sign-extend, only arithmetic ones."
+    },
+    {
+      "id": 24,
+      "week": "Week 3",
+      "topic": "Instruction Set Architectures 2",
+      "question": "Why do we need both the lui and ori instructions to load a 32 bit constant?",
+      "choices": [
+        "The ori loads the lower 16 bits and the lui shifts them to the upper half",
+        "You need two instructions to get 32 bits of data",
+        "The lui loads the upper 16 bits and the ori inserts the lower 16 bits",
+        "You need to load data that isn't sign-extended"
+      ],
+      "answer": "The lui loads the upper 16 bits and the ori inserts the lower 16 bits",
+      "explanation": "lui = load upper immediate. Loads 16 bits into the upper half and puts zeros in the bottom. ori = or immediate. Ors the constant value into the lower 16 bits."
+    },
+    {
+      "id": 25,
+      "week": "Week 3",
+      "topic": "Instruction Set Architectures 2",
+      "question": "How is the 16 bit immediate field in addi converted to a 32 bit immediate for adding to a 32 bit register value?",
+      "choices": [
+        "You can't get a 32 bit value from addi",
+        "The top 16 bits are filled with zeros",
+        "The data is replicated into the top 16 bits",
+        "The 16 bits are sign-extended"
+      ],
+      "answer": "The 16 bits are sign-extended",
+      "explanation": "Arithmetic operations sign-extend the 16 bit immediates to 32 bits by replicating the leftmost bit."
+    },
+    {
+      "id": 26,
+      "week": "Week 3",
+      "topic": "Instruction Set Architectures 2",
+      "question": "What does the I-format instruction tradeoff relative to the R-format?",
+      "choices": [
+        "The 16 bit immediate field for more register operands",
+        "All register fields for a long immediate",
+        "The third register and shift bits for a 16 bit immediate"
+      ],
+      "answer": "The third register and shift bits for a 16 bit immediate",
+      "explanation": "The I-format uses the bits from the rd, shmt, and funct fields in the R-format for a 16-bit immediate."
+    },
+    {
+      "id": 27,
+      "week": "Week 3",
+      "topic": "Instruction Set Architectures 2",
+      "question": "Is the code below correct?\njal Procedure ; Call the procedure\n...\nProcedure:\n...\naddi $ra, $ra, 4 ; Make sure we return to the next instruction!\njr $ra ; Return",
+      "choices": [
+        "No, you should only add 1 to $ra to go to the next instruction.",
+        "No, jal already stores PC+4 into $ra so you don't need to add 4 yourself.",
+        "Yes, you need to add 4 to $ra so you return to the next instruction."
+      ],
+      "answer": "No, jal already stores PC+4 into $ra so you don't need to add 4 yourself.",
+      "explanation": "The jal instruction stores the address of the current instruction plus 4 into $ra (PC+4). Incrementing $ra would cause you to return to the wrong instruction."
+    },
+    {
+      "id": 28,
+      "week": "Week 3",
+      "topic": "Instruction Set Architectures 2",
+      "question": "Which of the following is NOT a reason we need a convention for procedure calls?",
+      "choices": [
+        "To know where the return value goes",
+        "To know where the argument values go",
+        "To know where the procedure is",
+        "To avoid over-writing registers with temporary values"
+      ],
+      "answer": "To know where the procedure is",
+      "explanation": "The memory address of the procedure's instructions is included in the label constant when we call the procedure, e.g., 'jal update'. The other resources are all shared resources in the register file."
+    },
+    {
+      "id": 29,
+      "week": "Week 3",
+      "topic": "Instruction Set Architectures 2",
+      "question": "What is going to happen to the variable 'a' when main calls update? (update uses R16 as temporary, main uses R16 to store 'a')",
+      "choices": [
+        "Nothing. update doesn't use a.",
+        "It will be changed because update is supposed to change 'a'.",
+        "It will be changed because update uses the same register as 'a' for a temporary register."
+      ],
+      "answer": "It will be changed because update uses the same register as 'a' for a temporary register.",
+      "explanation": "When we call update it will write to R16 as a temporary register. But main is using R16 to store 'a'. Update will corrupt main's data!"
+    },
+    {
+      "id": 30,
+      "week": "Week 3",
+      "topic": "Instruction Set Architectures 2",
+      "question": "What are registers $v0, $v1, $a0, $a1, $a2 and $a3?",
+      "choices": [
+        "Special registers used only for arguments and return values",
+        "Special names for regular registers that must be used for arguments and return values to be compatible with other software",
+        "Memory locations used for storing arguments and return values"
+      ],
+      "answer": "Special names for regular registers that must be used for arguments and return values to be compatible with other software",
+      "explanation": "$v0 and $v1 are just R2 and R3. $a0-$a3 are just R4-R7. They are defined by convention to make sure software is compatible."
+    },
+    {
+      "id": 31,
+      "week": "Week 3",
+      "topic": "Instruction Set Architectures 2",
+      "question": "The stack pointer address is stored in R31 ($sp). How much do we need to decrement it to make space for a register?",
+      "choices": [
+        "1",
+        "4",
+        "32",
+        "Depends on the size of the register"
+      ],
+      "answer": "4",
+      "explanation": "Each register is 4 bytes and each memory address is 1 byte. To make room for a register (4 bytes) we need to move the stack pointer down by 4 bytes. We do this by: addi $sp, $sp, -4."
+    },
+    {
+      "id": 32,
+      "week": "Week 3",
+      "topic": "Instruction Set Architectures 2",
+      "question": "How do we store R16 to the stack?",
+      "choices": [
+        "sw R16, $sp",
+        "sw $sp, R16",
+        "addi $sp, $sp, -4 / sw R16, $sp",
+        "addi R16, $sp, -4 / sw R16, $sp"
+      ],
+      "answer": "addi $sp, $sp, -4 / sw R16, $sp",
+      "explanation": "First we move the stack pointer down by 1 word (4 bytes) then we store the register to the new address."
+    },
+    {
+      "id": 33,
+      "week": "Week 3",
+      "topic": "Instruction Set Architectures 2",
+      "question": "How do we restore R16 from the stack?",
+      "choices": [
+        "lw R16, $sp",
+        "lw $sp, R16",
+        "addi $sp, $sp, 4 / lw R16, $sp",
+        "lw R16, $sp / addi $sp, $sp, 4"
+      ],
+      "answer": "lw R16, $sp / addi $sp, $sp, 4",
+      "explanation": "First we load the data from where the stack pointer currently points with load word. Then we increment the stack pointer to point to the item before."
+    },
+    {
+      "id": 34,
+      "week": "Week 3",
+      "topic": "Instruction Set Architectures 2",
+      "question": "What registers need to be saved in this example? (update uses R20-R21; main uses R16-R22 as callee-saved registers)",
+      "choices": [
+        "None",
+        "The caller needs to save R16-R22",
+        "The callee needs to save R20-R21",
+        "The caller needs to save R16-R22 and the callee needs to save R20-R21"
+      ],
+      "answer": "The callee needs to save R20-R21",
+      "explanation": "R16-R23 are callee-saved registers. The callee must save them if it uses them, and update() uses both R20 and R21. The caller, main(), does not need to save anything."
+    },
+    {
+      "id": 35,
+      "week": "Week 3",
+      "topic": "Instruction Set Architectures 2",
+      "question": "Why does the callee not save $s1?",
+      "choices": [
+        "It does",
+        "The callee only saves $t registers",
+        "It does not write to $s1, so it doesn't need to save it",
+        "The caller saves it"
+      ],
+      "answer": "It does not write to $s1, so it doesn't need to save it",
+      "explanation": "The callee never writes to $s1 so it won't change its value. Therefore it does not need to save it."
+    },
+    {
+      "id": 36,
+      "week": "Week 3",
+      "topic": "Instruction Set Architectures 2",
+      "question": "Why does the caller not save $t2?",
+      "choices": [
+        "It does",
+        "The caller only saves $s registers",
+        "The caller writes over $t2 so it doesn't matter what the callee does to it",
+        "The callee saves it"
+      ],
+      "answer": "The caller writes over $t2 so it doesn't matter what the callee does to it",
+      "explanation": "The caller copies the result value ($v0) into $t2. So even if the callee writes something into $t2 it won't matter because the caller writes over it again."
+    },
+    {
+      "id": 37,
+      "week": "Week 3",
+      "topic": "Instruction Set Architectures 2",
+      "question": "Who has to save the $s and $t registers?",
+      "choices": [
+        "The callee must save all $s registers and the caller must save all $t registers",
+        "The callee must save all $t registers and the caller must save all $s registers",
+        "The callee must save all $s registers it uses and the caller must save all $t registers it uses",
+        "The callee must save all $t registers it uses and the caller must save all $s registers it uses"
+      ],
+      "answer": "The callee must save all $s registers it uses and the caller must save all $t registers it uses",
+      "explanation": "The $s (save) registers are 'saved' by the callee. The $t (temporary) registers must be saved by the caller, but only if it uses them."
+    },
+    {
+      "id": 38,
+      "week": "Week 3",
+      "topic": "Instruction Set Architectures 2",
+      "question": "If the caller uses $s0, $s1, $t0, and $t1, how much stack space does it need for saving registers before a procedure call?",
+      "choices": [
+        "32 bytes",
+        "8 bytes",
+        "4 bytes",
+        "2 bytes"
+      ],
+      "answer": "8 bytes",
+      "explanation": "The caller must save $t0 and $t1 (the $s registers are callee-saved). That's 2x4 bytes = 8 bytes."
+    },
+    {
+      "id": 39,
+      "week": "Week 3",
+      "topic": "Instruction Set Architectures 2",
+      "question": "What values should X and Y have in the code below for saving registers $s0 and $s4?\naddi $sp, $sp, X\nsw $s0, 0($sp)\nsw $s4, Y($sp)",
+      "choices": [
+        "X=8, Y=4",
+        "X=-4, Y=4",
+        "X=-8, Y=4",
+        "X=4, Y=0"
+      ],
+      "answer": "X=-8, Y=4",
+      "explanation": "We need to store two registers, so we move the stack pointer down 2x4=8 bytes. We store $s0 at the new stack pointer, and $s4 at 4 above it."
+    },
+    {
+      "id": 40,
+      "week": "Week 3",
+      "topic": "Instruction Set Architectures 2",
+      "question": "Which kind of processor takes more instructions to compute C=A+B where A, B, and C are all in memory?",
+      "choices": [
+        "Register-Memory (can specify memory addresses in the compute instructions)",
+        "Load-Store (all instructions have to compute on registers)",
+        "Same",
+        "Can't tell because we don't know how many registers we have"
+      ],
+      "answer": "Load-Store (all instructions have to compute on registers)",
+      "explanation": "Load-store machines require you to first load from memory, then compute on registers, then write back. Register-memory machines can specify the memory address in the instruction."
+    },
+    {
+      "id": 41,
+      "week": "Week 3",
+      "topic": "Instruction Set Architectures 2",
+      "question": "General purpose registers are better than memory-register machines for all of the following reasons EXCEPT which one?",
+      "choices": [
+        "Faster: registers can be accessed faster than memory",
+        "Easier assembly code: easier to write assembly code",
+        "Denser code: don't need as many memory addresses in the code",
+        "Easier: compilers can compile for them because they have a more regular structure"
+      ],
+      "answer": "Easier assembly code: easier to write assembly code",
+      "explanation": "Memory-register machines are easier to write assembly code for because you can reference memory directly. However, most code isn't written in assembly these days."
+    },
+    {
+      "id": 42,
+      "week": "Week 3",
+      "topic": "Instruction Set Architectures 2",
+      "question": "What are all processors internally today, and why?",
+      "choices": [
+        "RISC: because it is easier to build the hardware",
+        "CISC: because it is easier to build the hardware",
+        "RISC: because it is easier to write assembly",
+        "CISC: because it is easier to write assembly"
+      ],
+      "answer": "RISC: because it is easier to build the hardware",
+      "explanation": "Processors are absurdly complex. RISC designs are less complicated than CISC designs to build. For example, x86 processors decode their CISC instructions into RISC 'micro ops' internally."
+    },
+    {
+      "id": 43,
+      "week": "Week 3",
+      "topic": "Instruction Set Architectures 2",
+      "question": "Which of the following does the processor do internally?",
+      "choices": [
+        "Access all memory equally fast",
+        "Execute instructions atomically",
+        "Execute instructions in order",
+        "Convert instructions to make them easier to process"
+      ],
+      "answer": "Convert instructions to make them easier to process",
+      "explanation": "The ISA promises that instructions will seem like they execute atomically and in-order. But in reality they don't so the processor can run faster."
+    },
+    {
+      "id": 44,
+      "week": "Week 4-5",
+      "topic": "Processor Control and Datapath",
+      "question": "What is PCSrc for addi?",
+      "choices": [
+        "ALU result",
+        "PC+4"
+      ],
+      "answer": "PC+4",
+      "explanation": "addi is not a branch instruction, so the next instruction is simply PC+4."
+    },
+    {
+      "id": 45,
+      "week": "Week 4-5",
+      "topic": "Processor Control and Datapath",
+      "question": "What is ALUSrc for a lw instruction?",
+      "choices": [
+        "Register Read data 2",
+        "Sign-extended immediate"
+      ],
+      "answer": "Sign-extended immediate",
+      "explanation": "lw uses an immediate to calculate the address, so the inputs to the ALU need to be one register file output and the sign-extended immediate."
+    },
+    {
+      "id": 46,
+      "week": "Week 4-5",
+      "topic": "Processor Control and Datapath",
+      "question": "What is ALU operation for a lw instruction?",
+      "choices": [
+        "None",
+        "Add",
+        "Sub"
+      ],
+      "answer": "Add",
+      "explanation": "lw uses the ALU to compute the memory address by adding the sign-extended immediate and the register value."
+    },
+    {
+      "id": 47,
+      "week": "Week 4-5",
+      "topic": "Processor Control and Datapath",
+      "question": "How fast can the processor go? (How fast can the clock be?)",
+      "choices": [
+        "No faster than the Next PC logic",
+        "No faster than the slowest path through the whole processor",
+        "No faster than the path through the register file and ALU"
+      ],
+      "answer": "No faster than the slowest path through the whole processor",
+      "explanation": "If the clock is faster than that, then the logic won't be done before the next clock."
+    },
+    {
+      "id": 48,
+      "week": "Week 4-5",
+      "topic": "Processor Control and Datapath",
+      "question": "How fast can the processor run? (IM=10ns, RF=5ns, ALU=15ns, DM=20ns, WB=5ns)",
+      "choices": [
+        "10+5+15+20+5 = 55ns = 18MHz",
+        "10+5+15+20+5+5 = 60ns = 17MHz",
+        "10+5+15 = 30ns = 33MHz",
+        "5+5 = 10ns = 100MHz"
+      ],
+      "answer": "10+5+15+20+5 = 55ns = 18MHz",
+      "explanation": "The longest path is: Instruction memory -> read Register File -> ALU -> Data memory -> write Register File = 10+5+15+20+5 = 55ns."
+    },
+    {
+      "id": 49,
+      "week": "Week 4-5",
+      "topic": "Processor Control and Datapath",
+      "question": "What state elements are written when a bne is executed?",
+      "choices": [
+        "Data memory",
+        "Program Counter",
+        "Register File",
+        "Sign-extender"
+      ],
+      "answer": "Program Counter",
+      "explanation": "The bne instruction only updates the program counter. It does not store values into the Register File or Data memory."
+    },
+    {
+      "id": 50,
+      "week": "Week 4-5",
+      "topic": "Processor Control and Datapath",
+      "question": "What state elements are read when a bne is executed?",
+      "choices": [
+        "Instruction memory",
+        "Program Counter",
+        "Register File",
+        "All of the above"
+      ],
+      "answer": "All of the above",
+      "explanation": "The bne instruction needs to read the PC to know the current address, the current instruction (to calculate the next one) and the register file (to decide if the branch should be taken)."
+    },
+    {
+      "id": 51,
+      "week": "Week 4-5",
+      "topic": "Processor Control and Datapath",
+      "question": "What happens to the immediate value for non I-type instructions?",
+      "choices": [
+        "It is not sign-extended",
+        "It is garbage, but not used",
+        "It doesn't exist"
+      ],
+      "answer": "It is garbage, but not used",
+      "explanation": "The last 16 bits of the instruction are always sign-extended as if they were an immediate value, but if the instruction is not I-type, then this value is ignored."
+    },
+    {
+      "id": 52,
+      "week": "Week 4-5",
+      "topic": "Processor Control and Datapath",
+      "question": "What is the extra MUX in the pipelined datapath used for?",
+      "choices": [
+        "Choosing the memory or ALU output to write into the register file",
+        "Disabling writes to the register file for J-instructions",
+        "Using rt as the destination register for I-instructions",
+        "Disabling the sign-extension logic for R-instructions"
+      ],
+      "answer": "Using rt as the destination register for I-instructions",
+      "explanation": "I-instructions that write back data use the second register field (rt) to specify the destination. This MUX chooses either rt (I-type) or rd (R-type) for the register file write address."
+    },
+    {
+      "id": 53,
+      "week": "Week 6",
+      "topic": "Processor Pipelining",
+      "question": "If accessing the data memory takes 2x longer than any other stage and 30% of instructions are loads/stores, how much of the time is the processor NOT busy?",
+      "choices": [
+        "20% of the time",
+        "35% of the time",
+        "40% of the time"
+      ],
+      "answer": "35% of the time",
+      "explanation": "70%*1/2 = 35% of the time. For 70% of the instructions the processor needs half (or less) of the cycle time to finish. So 35% of the time is wasted."
+    },
+    {
+      "id": 54,
+      "week": "Week 6",
+      "topic": "Processor Pipelining",
+      "question": "What is the ALU doing in cycle 12? (Store instruction is in its WB stage at cycle 12)",
+      "choices": [
+        "Nothing",
+        "Accessing the register file",
+        "Calculating the store address"
+      ],
+      "answer": "Nothing",
+      "explanation": "In cycle 12 the store instruction is only reading from the register file."
+    },
+    {
+      "id": 55,
+      "week": "Week 6",
+      "topic": "Processor Pipelining",
+      "question": "What is the ALU doing when the load is accessing the memory? (In cycle 4: load=MEM, R instruction=EX, store=ID)",
+      "choices": [
+        "Nothing",
+        "Accessing the register file",
+        "Processing the R instruction's ALU op"
+      ],
+      "answer": "Processing the R instruction's ALU op",
+      "explanation": "In cycle 4: load is using the memory (MEM), R instruction is using the ALU (EX), store is using the RF (ID)."
+    },
+    {
+      "id": 56,
+      "week": "Week 6",
+      "topic": "Processor Pipelining",
+      "question": "What percentage of resources are we using? (4 tasks done sequentially: only using 1 of the 4 laundry stations at a time)",
+      "choices": [
+        "100%",
+        "50%",
+        "25%"
+      ],
+      "answer": "25%",
+      "explanation": "We are only using 1 of the wash, dry, fold, and put away units at any given time. The other three are idle."
+    },
+    {
+      "id": 57,
+      "week": "Week 6",
+      "topic": "Processor Pipelining",
+      "question": "How many people would you need to do all four laundry activities at the same time? (pipeline analogy)",
+      "choices": [
+        "1",
+        "2",
+        "4"
+      ],
+      "answer": "4",
+      "explanation": "Now doing (up to) four things at once, so we need 4 people. This is equivalent to needing control logic for 4 instructions at once."
+    },
+    {
+      "id": 58,
+      "week": "Week 6",
+      "topic": "Processor Pipelining",
+      "question": "What happens to your efficiency if you can't keep the pipeline full?",
+      "choices": [
+        "Goes up",
+        "Stays the same",
+        "Goes down"
+      ],
+      "answer": "Goes down",
+      "explanation": "If the pipeline is not full you are not using all your resources, so you are less efficient."
+    },
+    {
+      "id": 59,
+      "week": "Week 6",
+      "topic": "Processor Pipelining",
+      "question": "What is the throughput speedup due to 5-stage pipelining? (800ps without pipeline, 200ps per stage with pipeline)",
+      "choices": [
+        "1.7x",
+        "4x",
+        "5x"
+      ],
+      "answer": "4x",
+      "explanation": "Throughput is one instruction every 200ps vs. 800ps without pipeline = 4x. The absolute speedup for 3 particular instructions is 1.7x (1400ps/2400ps)."
+    },
+    {
+      "id": 60,
+      "week": "Week 6",
+      "topic": "Processor Pipelining",
+      "question": "What is missing from the pipelined datapath picture?",
+      "choices": [
+        "Balanced stages",
+        "Pipeline registers",
+        "Write back for the RF"
+      ],
+      "answer": "Pipeline registers",
+      "explanation": "We need them to store the state (instruction and results) between stages."
+    },
+    {
+      "id": 61,
+      "week": "Week 6",
+      "topic": "Processor Pipelining",
+      "question": "What do we need the instruction for in the next stage?",
+      "choices": [
+        "Determine the registers to read",
+        "Provide the immediate for sign-extending",
+        "Keep track of the instruction for later stages",
+        "All of the above"
+      ],
+      "answer": "All of the above",
+      "explanation": "We need the instruction rs and rt fields to figure out which RF entries to read, the immediate field to sign-extend, and the instruction for later stages."
+    },
+    {
+      "id": 62,
+      "week": "Week 6",
+      "topic": "Processor Pipelining",
+      "question": "Why do we need to keep RF 2 (second register file output)?",
+      "choices": [
+        "We might write it back to the RF",
+        "It is needed for the branch",
+        "It is needed as the data for the memory"
+      ],
+      "answer": "It is needed as the data for the memory",
+      "explanation": "If we are doing a memory write (store) then we write the data read from the RF into the memory. So we need this for the MEM stage."
+    },
+    {
+      "id": 63,
+      "week": "Week 6",
+      "topic": "Processor Pipelining",
+      "question": "Where does the Write Register come from? (the buggy version with IF/ID wiring)",
+      "choices": [
+        "Data memory",
+        "MEM/WB pipeline register instruction",
+        "IF/ID pipeline register instruction"
+      ],
+      "answer": "IF/ID pipeline register instruction",
+      "explanation": "The IF/ID pipeline register is wired to control the register file. This means the selected write register will NOT be from the instruction in the WB stage! This is an error!"
+    },
+    {
+      "id": 64,
+      "week": "Week 6",
+      "topic": "Processor Pipelining",
+      "question": "Where does the Write Register come from? (correct implementation)",
+      "choices": [
+        "The MEM/WB control bits (top)",
+        "Instruction in the IF/ID register",
+        "Data in the MEM/WB register"
+      ],
+      "answer": "Data in the MEM/WB register",
+      "explanation": "Instruction bits 20-16 or 11-15 are sent through to the MEM/WB register and used to determine the register to write to."
+    },
+    {
+      "id": 65,
+      "week": "Week 6",
+      "topic": "Processor Pipelining",
+      "question": "How many Instructions Per Cycle (IPC) would we get if we kept doing load instructions?",
+      "choices": [
+        "1.0",
+        "0.2 (one every 5 cycles)",
+        "5.0"
+      ],
+      "answer": "1.0",
+      "explanation": "With the pipeline full, we will get one instruction out every cycle, or an IPC of 1.0."
+    },
+    {
+      "id": 66,
+      "week": "Week 6",
+      "topic": "Processor Pipelining",
+      "question": "Which one is going to run at a faster clock frequency? (Little pipeline vs Big pipeline)",
+      "choices": [
+        "Little",
+        "Big",
+        "Same"
+      ],
+      "answer": "Big",
+      "explanation": "The big processor has a longer pipeline, which means each stage will be shorter, so a higher clock frequency."
+    },
+    {
+      "id": 67,
+      "week": "Week 6",
+      "topic": "Processor Pipelining",
+      "question": "Which pipeline will waste more time on pipeline registers?",
+      "choices": [
+        "Little",
+        "Big",
+        "Same"
+      ],
+      "answer": "Big",
+      "explanation": "Running at a higher frequency means a larger percentage of the time will be spent in pipeline registers. More stages also means more registers."
+    },
+    {
+      "id": 68,
+      "week": "Week 7",
+      "topic": "Pipeline Hazards",
+      "question": "Why do we have a hazard with the register file in the pipelined datapath?",
+      "choices": [
+        "We have more instructions in the pipeline at once so we need to write multiple values at the same time",
+        "The pipeline runs instructions in parallel so every stage needs to access the register file",
+        "We access it in both the WB and ID stages from different instructions"
+      ],
+      "answer": "We access it in both the WB and ID stages from different instructions",
+      "explanation": "Because our pipeline is executing instructions in parallel, different instructions access the register file at the same time from different stages. For MIPS, the WB stage writes and the ID reads."
+    },
+    {
+      "id": 69,
+      "week": "Week 7",
+      "topic": "Pipeline Hazards",
+      "question": "Double-pumping the register file fixes the hazard because:",
+      "choices": [
+        "It allows us to read out the result earlier",
+        "It allows us to read and write in the same cycle",
+        "It allows us to write two values at the same time"
+      ],
+      "answer": "It allows us to read and write in the same cycle",
+      "explanation": "By having a double-pumped register file, the earlier instruction can write in the first half of the clock cycle and the later one read in the second half."
+    },
+    {
+      "id": 70,
+      "week": "Week 7",
+      "topic": "Pipeline Hazards",
+      "question": "Why doesn't double-pumping the register file help when add #2 depends on add #1's result?",
+      "choices": [
+        "We need two writes at the same time",
+        "The result hasn't been computed yet",
+        "The result hasn't been written yet"
+      ],
+      "answer": "The result hasn't been written yet",
+      "explanation": "The result of the first instruction isn't written until cycle 5, which is 2 cycles after the second instruction tries to read it. Double-pumping only helps if it is in the same cycle."
+    },
+    {
+      "id": 71,
+      "week": "Week 7",
+      "topic": "Pipeline Hazards",
+      "question": "What other data hazards are there for these three instructions?\nadd R2, R11, R12\nadd R12, R2, R11\nadd R11, R2, R14",
+      "choices": [
+        "None",
+        "add #1 R11 -> add #3 R11",
+        "add #1 R2 -> add #3 R2"
+      ],
+      "answer": "add #1 R2 -> add #3 R2",
+      "explanation": "Since add #3 is one cycle after add #2, the value of R2 will still need 1 extra cycle to be ready. So both adds need to wait for the result in cycle 5 before they can execute."
+    },
+    {
+      "id": 72,
+      "week": "Week 7",
+      "topic": "Pipeline Hazards",
+      "question": "Is there a hazard between the sub and the add? (sub is 3 cycles before add, which uses sub's result)",
+      "choices": [
+        "Yes, Rd->Rt",
+        "No",
+        "Yes, Rd->Rs"
+      ],
+      "answer": "No",
+      "explanation": "The sub and the add are 3 cycles apart so the double-pumped register file takes care of this dependency."
+    },
+    {
+      "id": 73,
+      "week": "Week 7",
+      "topic": "Pipeline Hazards",
+      "question": "What percentage full is the pipeline in this example? (2 NOPs after every instruction, completing 3 instructions due to 2 bubbles in cycles 6 and 7)",
+      "choices": [
+        "2/5 = 40%",
+        "3/5 = 60%",
+        "5/5 = 100%"
+      ],
+      "answer": "3/5 = 60%",
+      "explanation": "In cycles 6 and 7 no useful instructions finish due to the bubbles, so we finish 3 instructions in 5 cycles."
+    },
+    {
+      "id": 74,
+      "week": "Week 7",
+      "topic": "Pipeline Hazards",
+      "question": "What happens to a program with compiler-inserted NOPs when it runs on a newer processor with an 8-stage pipeline?",
+      "choices": [
+        "Works the same",
+        "Runs faster because it has fewer NOPs",
+        "Does not work because it does not have enough NOPs"
+      ],
+      "answer": "Does not work because it does not have enough NOPs",
+      "explanation": "An 8-stage pipeline requires more NOPs to make sure data is ready for later instructions. If the program only has NOPs for a 5-stage pipeline, the instructions will calculate wrong results."
+    },
+    {
+      "id": 75,
+      "week": "Week 7",
+      "topic": "Pipeline Hazards",
+      "question": "What is the IPC (instructions per cycle) of a 5-stage pipeline where 2 NOPs have to be inserted after every instruction?",
+      "choices": [
+        "0.33",
+        "1.0",
+        "5.0"
+      ],
+      "answer": "0.33",
+      "explanation": "With two NOPs after every instruction, the pipeline will only complete 1 instruction every 3 cycles, for an IPC of 1/3 = 0.33."
+    },
+    {
+      "id": 76,
+      "week": "Week 7",
+      "topic": "Pipeline Hazards",
+      "question": "What forwarding is needed FROM a store instruction?",
+      "choices": [
+        "Same as for a load instruction",
+        "None",
+        "An extra path in the MEM stage"
+      ],
+      "answer": "None",
+      "explanation": "Store instructions do not write back to the register file, so no subsequent instructions can be waiting for their results."
+    },
+    {
+      "id": 77,
+      "week": "Week 7",
+      "topic": "Pipeline Hazards",
+      "question": "If a program has an add followed by a sub, how many NOPs are needed with no forwarding?",
+      "choices": [
+        "None",
+        "Two",
+        "Depends"
+      ],
+      "answer": "Depends",
+      "explanation": "If the sub uses the result of the add, it will need two NOPs. If the sub does not use the result of the add, no forwarding nor NOPs are required."
+    },
+    {
+      "id": 78,
+      "week": "Week 7",
+      "topic": "Pipeline Hazards",
+      "question": "If a program has 10% loads/stores, and half of the load delay slots can be filled with useful work, what is the expected IPC? (Assume IPC=1.0 with no load delay slots)",
+      "choices": [
+        "0.90",
+        "0.95",
+        "1.0"
+      ],
+      "answer": "0.95",
+      "explanation": "5% of the time we execute a NOP (half of the 10% load delay slots), so we have a 5% performance reduction: 1.0*95% = 0.95."
+    },
+    {
+      "id": 79,
+      "week": "Week 7",
+      "topic": "Pipeline Hazards",
+      "question": "How many instructions will the code below take on a machine with no forwarding? (reordering allowed)\nadd R4, R6, R10\nlw R10, 0(R4)\nadd R6, R6, R2",
+      "choices": [
+        "3",
+        "4",
+        "7"
+      ],
+      "answer": "4",
+      "explanation": "add R4, R6, R10 / add R6, R6, R2 / nop / lw R10, 0(R4). Two cycles are needed after the first add, but we can move the last add (independent) up to use one of those cycles."
+    },
+    {
+      "id": 80,
+      "week": "Week 7",
+      "topic": "Pipeline Hazards",
+      "question": "In which stage do we determine if the branch is taken?",
+      "choices": [
+        "EX",
+        "MEM",
+        "WB"
+      ],
+      "answer": "MEM",
+      "explanation": "The comparison is done in EX, but we don't use the result until the next stage, MEM."
+    },
+    {
+      "id": 81,
+      "week": "Week 7",
+      "topic": "Pipeline Hazards",
+      "question": "Can we move the branch logic to the IF stage?",
+      "choices": [
+        "Yes, we need more hardware",
+        "No, we need the register values",
+        "Maybe, but some branches won't work."
+      ],
+      "answer": "No, we need the register values",
+      "explanation": "The branch logic can't be computed until after we have read the register values."
+    },
+    {
+      "id": 82,
+      "week": "Week 7",
+      "topic": "Pipeline Hazards",
+      "question": "What is the change in IPC for a program with 20% branches from moving the branch decision from MEM to the ID stage?",
+      "choices": [
+        "Decrease from 1.0 to 0.83",
+        "Stay the same",
+        "Increase from 0.63 to 0.83"
+      ],
+      "answer": "Increase from 0.63 to 0.83",
+      "explanation": "With branch logic in MEM: 3 extra NOPs 20% of the time = IPC of 0.63. With branch logic in ID: 1 extra NOP 20% of the time = IPC of 0.83."
+    },
+    {
+      "id": 83,
+      "week": "Week 7",
+      "topic": "Pipeline Hazards",
+      "question": "Is the comparator used for the early branch logic as complicated as a full adder?",
+      "choices": [
+        "Yes, it does A-B",
+        "No"
+      ],
+      "answer": "No",
+      "explanation": "While one can use a full adder to do A-B to check equality, it is much easier to use XOR gates. The two values are equal if the outputs of the XOR gates are all 0."
+    },
+    {
+      "id": 84,
+      "week": "Week 7",
+      "topic": "Pipeline Hazards",
+      "question": "All three of the structural hazards we have seen were solved how?",
+      "choices": [
+        "Stalling the pipeline",
+        "Adding bypass (forwarding) logic",
+        "Adding more hardware"
+      ],
+      "answer": "Adding more hardware",
+      "explanation": "Register file: double-pumped read/writes. Branch: hardware to calculate branch address in parallel with register comparison. Memory: separate instruction and data memories."
+    },
+    {
+      "id": 85,
+      "week": "Week 7",
+      "topic": "Pipeline Hazards",
+      "question": "Why are these delay slots causing slowdowns?",
+      "choices": [
+        "The logic for bubbles/stalls makes the clock slower",
+        "The pipeline isn't full of useful instructions",
+        "The code is not well written"
+      ],
+      "answer": "The pipeline isn't full of useful instructions",
+      "explanation": "The performance loss is because we can't always find useful work to put in the delay slots. This results in a NOP in the pipeline, which means we waste a cycle."
+    },
+    {
+      "id": 86,
+      "week": "Week 7",
+      "topic": "Pipeline Hazards",
+      "question": "Which of the following is NOT the result of adding extra logic to overcome structural or control hazards?",
+      "choices": [
+        "More chip area",
+        "More energy for the circuits",
+        "More complex design to verify",
+        "More complex for the compiler"
+      ],
+      "answer": "More complex for the compiler",
+      "explanation": "Having the hardware handle the hazards makes the compiler's job easier because it does not have to think about them."
+    },
+    {
+      "id": 87,
+      "week": "Week 7",
+      "topic": "Pipeline Hazards",
+      "question": "Why is the MEM stage forwarding data coming from the WB stage?",
+      "choices": [
+        "The data is in the MEM pipeline register",
+        "We have to wait 1 cycle",
+        "We can't forward in the same cycle"
+      ],
+      "answer": "The data is in the MEM pipeline register",
+      "explanation": "The data from the MEM stage is stored in the pipeline register, so we take it from there."
+    },
+    {
+      "id": 88,
+      "week": "Week 8",
+      "topic": "Predicting Branches and Exceptions",
+      "question": "Why would it be hard to fill branch delay slots on modern processors?",
+      "choices": [
+        "Hard to find 15+ instructions that are executed regardless of the branch",
+        "More instructions in the pipeline makes it harder to stall",
+        "Modern processors run faster so it is harder to detect hazards"
+      ],
+      "answer": "Hard to find 15+ instructions that are executed regardless of the branch",
+      "explanation": "Modern processors have much longer pipelines. It is difficult to find a single instruction independent of the branch, and impossible to find enough to fill a modern pipeline."
+    },
+    {
+      "id": 89,
+      "week": "Week 8",
+      "topic": "Predicting Branches and Exceptions",
+      "question": "Which of these instructions can be moved into the branch delay slot?\naddi R1, R2, 4 / sub R4, R2, R3 / beq R1, R4, loop / nop / add R1, R3, R1 / loop: and R4, R4, R2",
+      "choices": [
+        "sub R4, R2, R3",
+        "add R1, R4, R1",
+        "and R4, R4, R2",
+        "None"
+      ],
+      "answer": "and R4, R4, R2",
+      "explanation": "The 'and' instruction is executed whether or not the loop is taken and the 'add' instruction (dependent on the loop) is not affected by it. So we can move it up."
+    },
+    {
+      "id": 90,
+      "week": "Week 8",
+      "topic": "Predicting Branches and Exceptions",
+      "question": "What is the performance penalty for predicting 'taken' on the Intel Nehalem processor? (17% branches, 33% taken, 17 cycles misprediction cost)",
+      "choices": [
+        "2.0x slower",
+        "2.9x slower",
+        "3.9x slower"
+      ],
+      "answer": "2.9x slower",
+      "explanation": "(0.17 branches/instruction) * (0.67 mispredictions/branch) * (17 cycles/misprediction) + (1 cycle/instruction) = 2.9x slower."
+    },
+    {
+      "id": 91,
+      "week": "Week 8",
+      "topic": "Predicting Branches and Exceptions",
+      "question": "Is N a reasonable prediction for the next branch for a branch history of TTTTTNTTTTT?",
+      "choices": [
+        "Yes",
+        "No"
+      ],
+      "answer": "Yes",
+      "explanation": "If the pattern is TTTTTNTTTTNTTTTT then the next one would be N, even though the last 5 were T."
+    },
+    {
+      "id": 92,
+      "week": "Week 8",
+      "topic": "Predicting Branches and Exceptions",
+      "question": "What hint should a compiler give about whether a branch is taken?\nif (error) { //Taken branch }",
+      "choices": [
+        "Taken",
+        "Not Taken"
+      ],
+      "answer": "Not Taken",
+      "explanation": "Errors are rare so we expect the program to almost always not take the branch to the error condition."
+    },
+    {
+      "id": 93,
+      "week": "Week 8",
+      "topic": "Predicting Branches and Exceptions",
+      "question": "What percentage mispredictions with a 1-bit predictor for the k branch?\nfor (j=0; j<100M; j++) { for (k=0; k<10; k++) { ... } }",
+      "choices": [
+        "2/1,000,000,000 = ~0%",
+        "10/100,000,000 = ~0%",
+        "20%"
+      ],
+      "answer": "20%",
+      "explanation": "We mispredict twice for every k-loop iteration (entering and exiting), so 2/10 = 20% misprediction."
+    },
+    {
+      "id": 94,
+      "week": "Week 8",
+      "topic": "Predicting Branches and Exceptions",
+      "question": "How well does the 2-bit branch predictor do on the k-loop?",
+      "choices": [
+        "~0%",
+        "10%",
+        "20%"
+      ],
+      "answer": "10%",
+      "explanation": "We always predict taken because we never get two not-takens in a row. So we mispredict 1/10 times in the loop, or 10%."
+    },
+    {
+      "id": 95,
+      "week": "Week 8",
+      "topic": "Predicting Branches and Exceptions",
+      "question": "How well does a 3-bit branch predictor do on the k-loop?",
+      "choices": [
+        "~0%",
+        "10%",
+        "20%"
+      ],
+      "answer": "10%",
+      "explanation": "The behavior is the same as the 2-bit predictor. Extra bits just mean we can keep predicting the same thing despite more incorrect branches."
+    },
+    {
+      "id": 96,
+      "week": "Week 8",
+      "topic": "Predicting Branches and Exceptions",
+      "question": "What is the benefit of using a BTB for j (unconditional jump) instructions?",
+      "choices": [
+        "Predict if the branch is taken",
+        "None",
+        "Determine the branch address earlier"
+      ],
+      "answer": "Determine the branch address earlier",
+      "explanation": "The branch address is decoded in the ID stage in our MIPS pipeline. If we have a BTB then we can determine the destination already in the IF stage."
+    },
+    {
+      "id": 97,
+      "week": "Week 8",
+      "topic": "Predicting Branches and Exceptions",
+      "question": "What outputs will you get from the BTB if the branch is not already in the table when you get to the PC?",
+      "choices": [
+        "Valid=1, Prediction=NT, Target=PC+4",
+        "Valid=1, Prediction=T, Target=PC+4",
+        "Valid=0, Prediction=??, Target=??"
+      ],
+      "answer": "Valid=0, Prediction=??, Target=??",
+      "explanation": "If the PC address is not a branch, Valid will be 0 so we know it isn't a branch. The Prediction bits and branch target will be garbage."
+    },
+    {
+      "id": 98,
+      "week": "Week 8",
+      "topic": "Predicting Branches and Exceptions",
+      "question": "What is the next PC loaded when the branch is not in the BTB?",
+      "choices": [
+        "Need to wait for branch to resolve to find out",
+        "PC+4",
+        "Look at the instruction immediate field"
+      ],
+      "answer": "PC+4",
+      "explanation": "If the BTB doesn't have an entry for a PC, we just go on to PC+4. If the PC was a branch, we update the BTB after it resolves."
+    },
+    {
+      "id": 99,
+      "week": "Week 8",
+      "topic": "Predicting Branches and Exceptions",
+      "question": "Which of the following exceptions can NOT occur in the MEM stage?",
+      "choices": [
+        "Page fault on data fetch",
+        "Misaligned memory access",
+        "Memory protection violation",
+        "Divide by zero"
+      ],
+      "answer": "Divide by zero",
+      "explanation": "Page faults, misaligned accesses, and protection violations can happen in the data memory. But since there is no division in the MEM stage, you can't have a divide by zero exception there."
+    },
+    {
+      "id": 100,
+      "week": "Week 8",
+      "topic": "Predicting Branches and Exceptions",
+      "question": "Why is the undefined instruction not a user-maskable exception?",
+      "choices": [
+        "Can't restart on the next instruction after it",
+        "Indicates an invalid program",
+        "Indicates an invalid branch"
+      ],
+      "answer": "Indicates an invalid program",
+      "explanation": "Programs should never have invalid instructions, so if one is found it indicates corruption. There's no point in continuing to run a corrupted program."
+    },
+    {
+      "id": 101,
+      "week": "Week 8",
+      "topic": "Predicting Branches and Exceptions",
+      "question": "Which one of the following is NOT a way in which pipelining makes exceptions trickier?",
+      "choices": [
+        "Multiple exceptions at the same time",
+        "Later instructions have exceptions earlier",
+        "Exceptions can occur in math operations"
+      ],
+      "answer": "Exceptions can occur in math operations",
+      "explanation": "Math operations can generate exceptions regardless of whether the processor is pipelined. Multiple exceptions at the same time and out-of-order exceptions are both results of pipelining."
+    },
+    {
+      "id": 102,
+      "week": "Week 11",
+      "topic": "Caches",
+      "question": "When would we ever clear the valid bit?",
+      "choices": [
+        "Never",
+        "When we clear the cache",
+        "After every load"
+      ],
+      "answer": "When we clear the cache",
+      "explanation": "We might clear the cache when we switch between running programs or put the computer to sleep."
+    },
+    {
+      "id": 103,
+      "week": "Week 11",
+      "topic": "Caches",
+      "question": "What do we do if the valid bit is 0?",
+      "choices": [
+        "Throw an exception",
+        "Set the valid bit to 1",
+        "Get the data from the DRAM"
+      ],
+      "answer": "Get the data from the DRAM",
+      "explanation": "If the valid bit is not set, the data in the cache is invalid. We need to go get the valid data from the DRAM and put it in the cache."
+    },
+    {
+      "id": 104,
+      "week": "Week 11",
+      "topic": "Caches",
+      "question": "How many bits do we need for the address tag? (for a word-aligned direct-mapped cache)",
+      "choices": [
+        "4",
+        "30",
+        "32"
+      ],
+      "answer": "30",
+      "explanation": "For this cache the address tag specifies the address, so we need 30 bits to identify the word address."
+    },
+    {
+      "id": 105,
+      "week": "Week 11",
+      "topic": "Caches",
+      "question": "Why does the 4-word block size work so much better?",
+      "choices": [
+        "Less wasted space",
+        "Loads other data we will need later",
+        "Fewer tag bits"
+      ],
+      "answer": "Loads other data we will need later",
+      "explanation": "By loading the next 3 words plus the word we need, we get lucky. This is called spatial locality."
+    },
+    {
+      "id": 106,
+      "week": "Week 11",
+      "topic": "Caches",
+      "question": "Why would a direct-mapped, single block search help?",
+      "choices": [
+        "Less wasted space",
+        "Only need one comparator",
+        "Only have to search one block"
+      ],
+      "answer": "Only have to search one block",
+      "explanation": "If the cache block can only be in one place, we only need to look in that one place. We can search the whole cache with a single comparator."
+    },
+    {
+      "id": 107,
+      "week": "Week 11",
+      "topic": "Caches",
+      "question": "What is the average number of cycles spent accessing memory for each instruction? (1-cycle cache, data 50% of the time, 100-cycle memory)",
+      "choices": [
+        "51",
+        "50.5",
+        "Need more information"
+      ],
+      "answer": "Need more information",
+      "explanation": "You need to know the percentage of instructions that access memory. If 100% of instructions access memory, then the answer would be 50%*1+50%*100 = 50.5."
+    },
+    {
+      "id": 108,
+      "week": "Week 11",
+      "topic": "Caches",
+      "question": "How many misses will the program have in total? (4 instructions in a loop, direct-mapped cache of 4 entries)",
+      "choices": [
+        "4",
+        "4*number of loop iterations",
+        "Need more information"
+      ],
+      "answer": "4",
+      "explanation": "Once the 4 instructions have been loaded into memory it will never miss again."
+    },
+    {
+      "id": 109,
+      "week": "Week 11",
+      "topic": "Caches",
+      "question": "If the program was run on a processor with a cache with only 3 entries, how many misses would it have?",
+      "choices": [
+        "4",
+        "5",
+        "Proportional to the number of loop iterations"
+      ],
+      "answer": "Proportional to the number of loop iterations",
+      "explanation": "Every time the code moves between top and bottom two instructions, one instruction gets evicted, causing a miss each way."
+    },
+    {
+      "id": 110,
+      "week": "Week 11",
+      "topic": "Caches",
+      "question": "Why do we use the address for the tag?",
+      "choices": [
+        "Need it to see if the data is valid",
+        "Shorter than using the data",
+        "Need to uniquely identify the data"
+      ],
+      "answer": "Need to uniquely identify the data",
+      "explanation": "Since we can have any data in the cache we need to make sure we know exactly what data we have. The data is defined by its address."
+    },
+    {
+      "id": 111,
+      "week": "Week 11",
+      "topic": "Caches",
+      "question": "When do we set the valid bit in the cache?",
+      "choices": [
+        "When we load data into the cache",
+        "When we access data from the cache",
+        "When we write to the cache",
+        "When we store data into DRAM"
+      ],
+      "answer": "When we load data into the cache",
+      "explanation": "When we load data into the cache we know that it is valid (since we just loaded it)."
+    },
+    {
+      "id": 112,
+      "week": "Week 11",
+      "topic": "Caches",
+      "question": "Why do we need fewer bits in the tag for a larger cache block?",
+      "choices": [
+        "Reduced overhead from having more words per tag",
+        "We only need one valid bit for the whole block",
+        "The extra address bits are used to identify the word in the cache block"
+      ],
+      "answer": "The extra address bits are used to identify the word in the cache block",
+      "explanation": "Those bits tell us which word to select from the cache block, so we don't need them in the tag. The tag identifies the whole cache block."
+    },
+    {
+      "id": 113,
+      "week": "Week 11",
+      "topic": "Caches",
+      "question": "How many bits do we need from the address to determine which word to look at in a 64 byte cache line?",
+      "choices": [
+        "3",
+        "4",
+        "5"
+      ],
+      "answer": "4",
+      "explanation": "A 64-byte cache line contains 16 4-byte words. Therefore we need 4 bits to choose from 16 words."
+    },
+    {
+      "id": 114,
+      "week": "Week 11",
+      "topic": "Caches",
+      "question": "What would the fully-associative cache have done in the example where the direct-mapped one had conflicts?",
+      "choices": [
+        "Put the 4 instructions in 4 different blocks",
+        "Had the same conflicts",
+        "Put the instructions in the same blocks"
+      ],
+      "answer": "Put the 4 instructions in 4 different blocks",
+      "explanation": "The fully-associative cache can put any address in any slot, so it would have been able to put all 4 instructions in 4 slots regardless of their addresses."
+    },
+    {
+      "id": 115,
+      "week": "Week 11",
+      "topic": "Caches",
+      "question": "Why don't we need the 3 bits that choose the direct-mapped cache block in the tag?",
+      "choices": [
+        "They choose the word in the block",
+        "We have enough other bits that we don't need them to uniquely identify the address",
+        "They will be the same for every address that maps to that block"
+      ],
+      "answer": "They will be the same for every address that maps to that block",
+      "explanation": "Every address that goes to that block will have the same 3 bits, so they are not unique and cannot be used for identification."
+    },
+    {
+      "id": 116,
+      "week": "Week 11",
+      "topic": "Caches",
+      "question": "Why did we have 3 bits to choose the block for the 8-entry direct-mapped cache but only 2 for the 8-entry, 4-way set-associative cache?",
+      "choices": [
+        "The SA cache had two blocks per way, so we needed 2 bits",
+        "The SA cache is more flexible, so needs fewer bits",
+        "The SA cache had 4 sets, so we needed 2 bits"
+      ],
+      "answer": "The SA cache had 4 sets, so we needed 2 bits",
+      "explanation": "The address bits for the set-associative cache are used to choose which set the address maps into. Since we had 4 sets (each with 2 blocks) we only needed 2 bits."
+    },
+    {
+      "id": 117,
+      "week": "Week 11",
+      "topic": "Caches",
+      "question": "Where did the 3rd bit (not needed for the set-associative cache but needed for direct-mapped) go in the set-associative cache?",
+      "choices": [
+        "Into the tag",
+        "Not needed",
+        "To choose the block in the set"
+      ],
+      "answer": "Into the tag",
+      "explanation": "For the 8-entry, 4-way set-associative cache, we used 2 bits to choose from the 4 sets. The next bit is then part of the tag."
+    },
+    {
+      "id": 118,
+      "week": "Week 11",
+      "topic": "Caches",
+      "question": "Why would a direct-mapped cache be more power-efficient than a set-associative one?",
+      "choices": [
+        "Smaller, so the SRAM will use less power",
+        "Is more flexible, so it will be more likely to have the data and save DRAM access power",
+        "Only looks at one block every time, so it uses less power"
+      ],
+      "answer": "Only looks at one block every time, so it uses less power",
+      "explanation": "A direct-mapped cache only looks at one entry every time. An n-way set-associative cache looks at n-blocks every time, and a fully-associative cache looks at every block."
+    },
+    {
+      "id": 119,
+      "week": "Week 11",
+      "topic": "Caches",
+      "question": "How many comparators are needed for a 16-way set-associative cache with 2 words per block?",
+      "choices": [
+        "8",
+        "16",
+        "32"
+      ],
+      "answer": "16",
+      "explanation": "You need one comparator for each way."
+    },
+    {
+      "id": 120,
+      "week": "Week 11",
+      "topic": "Caches",
+      "question": "Why did random replacement not work well for the blue/black loop example?",
+      "choices": [
+        "Instructions were evicted before they were used",
+        "Took too long to find a block to evict",
+        "The current loop's instructions were evicted instead of the previous loop's"
+      ],
+      "answer": "The current loop's instructions were evicted instead of the previous loop's",
+      "explanation": "Since the instructions to replace were chosen at random, we ended up replacing the instructions from the current loop, which caused more misses."
+    },
+    {
+      "id": 121,
+      "week": "Week 11",
+      "topic": "Caches",
+      "question": "Is having 1 bit to keep track of the oldest item in the cache enough for LRU?",
+      "choices": [
+        "Yes, you just want to find the one to evict",
+        "No, you need to know how old all blocks are",
+        "Maybe, but it depends on the cache block size"
+      ],
+      "answer": "No, you need to know how old all blocks are",
+      "explanation": "Knowing the oldest one is fine for the first eviction, but then you need to know the next-oldest one for subsequent evictions."
+    },
+    {
+      "id": 122,
+      "week": "Week 11",
+      "topic": "Caches",
+      "question": "How slow is a write? (write-through cache)",
+      "choices": [
+        "Depends on whether the data is in the cache",
+        "As slow as the DRAM",
+        "As slow as the DRAM and the cache"
+      ],
+      "answer": "As slow as the DRAM",
+      "explanation": "We have to write to the DRAM every time, so we pay that penalty. We can do the write to the cache at the same time (in parallel) so they don't add up."
+    },
+    {
+      "id": 123,
+      "week": "Week 11",
+      "topic": "Caches",
+      "question": "Why is write-back with allocate-on-write better? (compared to write-through)",
+      "choices": [
+        "It isn't",
+        "Faster to read and write than just write",
+        "Subsequent reads will hit in the cache"
+      ],
+      "answer": "Subsequent reads will hit in the cache",
+      "explanation": "We are very likely to access data we just wrote again. Therefore, loading it into the cache will be faster."
+    },
+    {
+      "id": 124,
+      "week": "Week 11",
+      "topic": "Caches",
+      "question": "Can allocate-on-write cause a second write to memory?",
+      "choices": [
+        "Yes, if putting the data in the cache causes an eviction",
+        "Maybe. If we are using write-through then we are already doing a write so no, but if we aren't then it could.",
+        "No. We can only do one write per instruction."
+      ],
+      "answer": "Yes, if putting the data in the cache causes an eviction",
+      "explanation": "When we do allocate-on-write we put data in the cache when we do a write. This may cause other data to be evicted, resulting in us writing both pieces of data to the DRAM."
+    },
+    {
+      "id": 125,
+      "week": "Week 11",
+      "topic": "Caches",
+      "question": "Why do we not need dirty bits for write-through caches?",
+      "choices": [
+        "The valid bit is 0 if the data has been changed",
+        "Write-on-allocate ensures we will have the right data in the cache and DRAM.",
+        "We always write to the DRAM, so we never have newer data in the cache."
+      ],
+      "answer": "We always write to the DRAM, so we never have newer data in the cache.",
+      "explanation": "Write-through caches always keep the cache and DRAM in sync by writing the data directly to the DRAM."
+    },
+    {
+      "id": 126,
+      "week": "Week 11",
+      "topic": "Caches",
+      "question": "What happens to performance when the miss ratio goes down from 10.5% to 3.5%?",
+      "choices": [
+        "Slower",
+        "Stays the same",
+        "Faster"
+      ],
+      "answer": "Faster",
+      "explanation": "The application will probably run faster. Hitting in the cache is a lot faster than missing."
+    },
+    {
+      "id": 127,
+      "week": "Week 11",
+      "topic": "Caches",
+      "question": "Why is the AMAT for the 8MB cache the same as for the 256kB cache? (1-cycle hit for 256kB, 4-cycle hit for 8MB, both 100-cycle DRAM)",
+      "choices": [
+        "Slower cache",
+        "Different miss ratios",
+        "Different applications"
+      ],
+      "answer": "Slower cache",
+      "explanation": "The cache takes 4 cycles for Machine 2 and only 1 for Machine 1. So even though the 8MB cache has 1/2 the miss ratio, the slower cache hurts a lot!"
+    },
+    {
+      "id": 128,
+      "week": "Week 11",
+      "topic": "Caches",
+      "question": "How many memory accesses do we have per instruction?",
+      "choices": [
+        "0.25",
+        "0.33",
+        "1.33"
+      ],
+      "answer": "1.33",
+      "explanation": "100% of instructions load an instruction. 33% of instructions are a load/store and so access data memory. 1 + 0.33 = 1.33."
+    },
+    {
+      "id": 129,
+      "week": "Week 11",
+      "topic": "Caches",
+      "question": "Why do we have separate instruction and data caches?",
+      "choices": [
+        "Instruction caches need to be fully-associative",
+        "Allows us to split up instructions and data to store them more efficiently.",
+        "We need to access the instruction cache on every cycle, so we need a separate memory for it."
+      ],
+      "answer": "We need to access the instruction cache on every cycle, so we need a separate memory for it.",
+      "explanation": "Since we load instructions on every cycle (and data on 33% of the cycles) we need to be able to access both instruction and data memory at the same time."
+    },
+    {
+      "id": 130,
+      "week": "Week 12",
+      "topic": "Virtual Memory",
+      "question": "How much memory can you access with a 32 bit address?",
+      "choices": [
+        "2^30 bytes = 1GB",
+        "2^32 bytes = 4GB",
+        "2^32 words = 16GB"
+      ],
+      "answer": "2^32 bytes = 4GB",
+      "explanation": "A 32-bit address space gives you (theoretically) 4GB of memory you can address. In practice the OS reserves some, so it is closer to 2GB of usable space."
+    },
+    {
+      "id": 131,
+      "week": "Week 12",
+      "topic": "Virtual Memory",
+      "question": "Which of these is NOT a problem if all programs share a 32-bit address space and we have less than 4GB of RAM?",
+      "choices": [
+        "Reading some addresses will cause a crash",
+        "Can't reach the full memory range due to the 16-bit MIPS immediate",
+        "Programs can overwrite each others' data",
+        "Programs may not fit together"
+      ],
+      "answer": "Can't reach the full memory range due to the 16-bit MIPS immediate",
+      "explanation": "We can always reach the full address space if we use the 16-bit immediate to create a 32-bit immediate. (Remember the load/shift/or immediate trick?)"
+    },
+    {
+      "id": 132,
+      "week": "Week 12",
+      "topic": "Virtual Memory",
+      "question": "What is going to happen to the program performance when the data it needs is on the disk and not in memory?",
+      "choices": [
+        "Better performance: we can use more memory than we have",
+        "Nothing: mapping to memory or disk is just as easy",
+        "Worse performance: reading from disk is slower than RAM"
+      ],
+      "answer": "Worse performance: reading from disk is slower than RAM",
+      "explanation": "Disks are 1000x slower than RAM. Any time you can't fit your data in memory and have to go to disk you pay a HUGE performance penalty!"
+    },
+    {
+      "id": 133,
+      "week": "Week 12",
+      "topic": "Virtual Memory",
+      "question": "Virtual Memory lets us isolate programs. What is a downside of complete isolation?",
+      "choices": [
+        "Programs can't corrupt each other",
+        "Programs can't share data with each other",
+        "Programs use more space because they have their own address space",
+        "Programs are slower because they always have to check the disk for data"
+      ],
+      "answer": "Programs can't share data with each other",
+      "explanation": "A lot of data is shared between programs (fonts, graphics, libraries, etc.). However, we can use the same mapping to allow programs to share data by having their maps point to the same data."
+    },
+    {
+      "id": 134,
+      "week": "Week 12",
+      "topic": "Virtual Memory",
+      "question": "R12 has the value 1536. A program issues ld R3, 0(R12). What location in RAM is accessed?",
+      "choices": [
+        "RAM address 0",
+        "RAM address 1536",
+        "Need more information"
+      ],
+      "answer": "Need more information",
+      "explanation": "The program accesses Virtual Address 1536, but to know what RAM Physical Address is accessed we need to know the Mapping from the VA to the PA."
+    },
+    {
+      "id": 135,
+      "week": "Week 12",
+      "topic": "Virtual Memory",
+      "question": "If a program uses more data than can fit into RAM, where does the data go?",
+      "choices": [
+        "Unused RAM",
+        "Can't use more than what can fit into RAM",
+        "Disk"
+      ],
+      "answer": "Disk",
+      "explanation": "If the data doesn't fit into RAM, then the page table will map those Virtual Addresses to the disk. The OS can then load them into RAM as needed."
+    },
+    {
+      "id": 136,
+      "week": "Week 12",
+      "topic": "Virtual Memory",
+      "question": "How many entries do we need in our Page Table? (word-aligned 32-bit memory)",
+      "choices": [
+        "1 for every byte = 2^32 = 4 billion",
+        "1 for every word = 2^30 = 1 billion",
+        "1 for every register = 32"
+      ],
+      "answer": "1 for every word = 2^30 = 1 billion",
+      "explanation": "We have a word-aligned memory so we need to be able to address every word. Note: each entry needs the PA which is 32 bits, so that's 1GB of memory for the Page Table alone!"
+    },
+    {
+      "id": 137,
+      "week": "Week 12",
+      "topic": "Virtual Memory",
+      "question": "How many entries do we need in our Page Table with 4kB pages on a 32-bit machine?",
+      "choices": [
+        "1 for every word = 2^30 = 1 billion",
+        "1 for every 1024 words = 1 million",
+        "1 for every 4096 words = 262,144"
+      ],
+      "answer": "1 for every 1024 words = 1 million",
+      "explanation": "With 4kB pages we have 1024 words per page. So 1 billion words / 1024 = 1 million Page Table Entries."
+    },
+    {
+      "id": 138,
+      "week": "Week 12",
+      "topic": "Virtual Memory",
+      "question": "What is the Physical Address for Virtual Address 4? (VA 0-4095 maps to PA 4096-8191)",
+      "choices": [
+        "4",
+        "4096",
+        "4100",
+        "Unknown"
+      ],
+      "answer": "4100",
+      "explanation": "All VA in the range 0-4095 are mapped to the PA in the range 4096-8191. So address 4 will be mapped to 4096+4 = 4100."
+    },
+    {
+      "id": 139,
+      "week": "Week 12",
+      "topic": "Virtual Memory",
+      "question": "Why do we have more virtual page number bits than physical page number bits in this example? (4GB virtual vs 256MB physical)",
+      "choices": [
+        "The page offset is different for the virtual and physical addresses",
+        "The virtual address space (size) is larger than our physical RAM",
+        "The page table cannot map to a larger number of bits than its input"
+      ],
+      "answer": "The virtual address space (size) is larger than our physical RAM",
+      "explanation": "We had a 4GB virtual address space (2^32 bytes) but only a 256MB physical address space (2^28 bytes). So we needed fewer bits to address our physical address space."
+    },
+    {
+      "id": 140,
+      "week": "Week 12",
+      "topic": "Virtual Memory",
+      "question": "What would be true on a 32-bit machine with 8GB of RAM installed?",
+      "choices": [
+        "The page offset would be larger",
+        "The physical address would be the same size as the virtual address",
+        "You would not need virtual memory",
+        "The physical address would be larger than the virtual address"
+      ],
+      "answer": "The physical address would be larger than the virtual address",
+      "explanation": "To address 8GB of memory you need 33 bits of address. This is why we have moved to 64 bit processors."
+    },
+    {
+      "id": 141,
+      "week": "Week 12",
+      "topic": "Virtual Memory",
+      "question": "What do we get when we translate the VA 0x00000783? (VA 0x00000 maps to DISK)",
+      "choices": [
+        "0x00000783",
+        "0x00006783",
+        "Have to get it from the disk",
+        "Unknown"
+      ],
+      "answer": "Have to get it from the disk",
+      "explanation": "The Page Table says that VA 0x00000 maps to a page that is on the disk, and not in memory."
+    },
+    {
+      "id": 142,
+      "week": "Week 12",
+      "topic": "Virtual Memory",
+      "question": "If we have 64kB pages, how many bits do we use for the page offset?",
+      "choices": [
+        "12",
+        "13",
+        "16",
+        "Unknown"
+      ],
+      "answer": "16",
+      "explanation": "2^16 is 64k, so we use the lowest 16 bits as the page offset."
+    },
+    {
+      "id": 143,
+      "week": "Week 12",
+      "topic": "Virtual Memory",
+      "question": "How do we know if a page is not in RAM?",
+      "choices": [
+        "No entry in the page table",
+        "Page table entry points to disk",
+        "Address does not fit in the PA address space"
+      ],
+      "answer": "Page table entry points to disk",
+      "explanation": "If the page table entry points to the disk, then we know the page is on the disk."
+    },
+    {
+      "id": 144,
+      "week": "Week 12",
+      "topic": "Virtual Memory",
+      "question": "How long does a page fault take?",
+      "choices": [
+        "No time",
+        "A short time",
+        "A long time",
+        "An amazingly, incredibly, painfully long time"
+      ],
+      "answer": "An amazingly, incredibly, painfully long time",
+      "explanation": "Disks are much slower than RAM, so every time you have a page fault it takes an amazingly, incredibly, painfully long time."
+    },
+    {
+      "id": 145,
+      "week": "Week 12",
+      "topic": "Virtual Memory",
+      "question": "Why doesn't LRU work well for the access pattern 0,1,2,3,4,0,1,2,3 when you only have space for 4 pages?",
+      "choices": [
+        "FIFO is always better than LRU",
+        "It doesn't. LRU works perfectly.",
+        "LRU evicts the page table entry that was last put into the page table.",
+        "Here LRU always evicts the data you are just about to need."
+      ],
+      "answer": "Here LRU always evicts the data you are just about to need.",
+      "explanation": "You are trying to use 5 pages of data in-order, and you only have space for 4. So every time you evict a page, you evict the one you are going to need next."
+    },
+    {
+      "id": 146,
+      "week": "Week 12",
+      "topic": "Virtual Memory",
+      "question": "Would choosing a random page for eviction help for the access pattern 0,1,2,3,4,0,1,2,3 when you only have space for 4 pages?",
+      "choices": [
+        "No, LRU or FIFO are always better than random",
+        "There is nothing you can do: it is pathological",
+        "You would need a much smarter algorithm",
+        "Yes, random is less likely to kick out the data you are going to need in a nasty manner."
+      ],
+      "answer": "Yes, random is less likely to kick out the data you are going to need in a nasty manner.",
+      "explanation": "With random you have only a 1/4 chance of kicking out the data you are about to need, compared to LRU or FIFO which have a 100% chance in this case."
+    },
+    {
+      "id": 147,
+      "week": "Week 12",
+      "topic": "Virtual Memory",
+      "question": "What addresses (pages) could two programs write to that could cause them to corrupt each other? (Program 1: VA 0x0002->PA 0x0004; Program 2: VA 0x0001->PA 0x0004)",
+      "choices": [
+        "Program 1 0x0001 and Program 2 0x0001",
+        "Program 1 0x0002 and Program 2 0x0002",
+        "Program 1 0x0002 and Program 2 0x0001",
+        "Program 1 0xffff and Program 2 0xffff"
+      ],
+      "answer": "Program 1 0x0002 and Program 2 0x0001",
+      "explanation": "Program 1's page table maps VA 0x0002 to PA 0x0004. Program 2's page table maps VA 0x0001 to PA 0x0004. If both programs write to these addresses they will change the same physical RAM location."
+    },
+    {
+      "id": 148,
+      "week": "Week 12",
+      "topic": "Virtual Memory",
+      "question": "What are reasonable page protection flags for shared page 0xffff to allow programs to share data but not corrupt each other?",
+      "choices": [
+        "read only",
+        "read and write",
+        "copy-on-write",
+        "none"
+      ],
+      "answer": "read only and/or copy-on-write",
+      "explanation": "Read only will ensure that neither program can change the shared data. Copy-on-write (COW) will ensure that, if a program does change the shared data, it gets its own private copy."
+    },
+    {
+      "id": 149,
+      "week": "Week 12",
+      "topic": "Virtual Memory",
+      "question": "What do we have to do for each memory access with virtual memory?",
+      "choices": [
+        "Load data from disk",
+        "Access the page table in RAM, Translate the address, Access the data in RAM",
+        "Update the cache",
+        "Have the operating system update the page table"
+      ],
+      "answer": "Access the page table in RAM, Translate the address, Access the data in RAM",
+      "explanation": "1. Access the page table in RAM. 2. Translate the address. 3. Access the data in RAM. And we have an average of 1.33 accesses for each instruction!"
+    },
+    {
+      "id": 150,
+      "week": "Week 12",
+      "topic": "Virtual Memory",
+      "question": "TLBs are small. How can we make them effectively bigger without slowing them down?",
+      "choices": [
+        "Just make them hold more PTEs!",
+        "Make pages larger",
+        "Add a second TLB that is larger, but a bit slower",
+        "Have hardware to fill the TLB automatically if there is a miss."
+      ],
+      "answer": "Make pages larger, Add a second TLB, and Have hardware fill TLB automatically",
+      "explanation": "1. Make pages larger - increases the reach. 2. Add a second TLB that is larger, but a bit slower. 3. Have hardware to fill the TLB automatically (hardware page table walk)."
+    },
+    {
+      "id": 151,
+      "week": "Week 12",
+      "topic": "Virtual Memory",
+      "question": "What is going to happen when we try to load address 0x00000860? (TLB has entries for 0x00003 and 0x00004; VA 0x00000 maps to DISK)",
+      "choices": [
+        "TLB hit",
+        "TLB miss",
+        "TLB eviction",
+        "Load from disk"
+      ],
+      "answer": "TLB miss->TLB eviction->Load from disk",
+      "explanation": "This is the worst possible combination. It will take forever..."
+    },
+    {
+      "id": 152,
+      "week": "Week 12",
+      "topic": "Virtual Memory",
+      "question": "With multi-level page tables, what is the smallest amount of page table data we need to keep in memory for each 32-bit application?",
+      "choices": [
+        "4MB+4kB (always need the whole page table plus the 1st-level page)",
+        "4MB (always need the whole page table in RAM)",
+        "4kB+4kB (need the 1st-level page table and one 2nd-level page table)",
+        "4kB (just need the 1st-level page table)"
+      ],
+      "answer": "4kB+4kB (need the 1st-level page table and one 2nd-level page table)",
+      "explanation": "We always need the 1st-level page table to find the 2nd-level ones. We need at least one 2nd-level page table to actually translate memory addresses: 4kB+4kB per application."
+    },
+    {
+      "id": 153,
+      "week": "Week 12",
+      "topic": "Virtual Memory",
+      "question": "If running 100 applications with a 2-level page table, how much memory do we need to keep in RAM at all times?",
+      "choices": [
+        "4kB+4kB (need 1st-level and one 2nd-level page table)",
+        "400kB (just need the 1st-level page table for each application)",
+        "800kB (need the 1st- and one 2nd-level page table for each application)",
+        "400MB (need the full page table for each application)"
+      ],
+      "answer": "800kB (need the 1st- and one 2nd-level page table for each application)",
+      "explanation": "For each application we need its 1st-level page table and at least one 2nd-level page table. If we have 100 applications: 100*(4kB+4kB) = 800kB."
+    },
+    {
+      "id": 154,
+      "week": "Week 12",
+      "topic": "Virtual Memory",
+      "question": "Can you have two programs share a virtual cache?",
+      "choices": [
+        "Yes. The TLB provides protection.",
+        "No. Each needs its own TLB.",
+        "No. The cache is virtual so there is no way to provide protection"
+      ],
+      "answer": "No. The cache is virtual so there is no way to provide protection",
+      "explanation": "A virtual cache stores data by the virtual program address. There is no translation, so VM-based protection can't keep applications apart!"
+    },
+    {
+      "id": 155,
+      "week": "Week 12",
+      "topic": "Virtual Memory",
+      "question": "With 4kB pages, how many bytes can a direct-mapped (1-way) VIPT cache store?",
+      "choices": [
+        "4kB",
+        "4096kB",
+        "Unlimited",
+        "Need to know the cache line size"
+      ],
+      "answer": "4kB",
+      "explanation": "We can only use the page offset bits (12 bits for 4kB pages) to index into the cache. So the index can only address 12 bits of address, or 4kB of data."
+    },
+    {
+      "id": 156,
+      "week": "Week 13",
+      "topic": "Input/Output",
+      "question": "Why is differential signaling better?",
+      "choices": [
+        "Two wires are less likely to break",
+        "Can send data faster",
+        "By subtracting we remove the noise"
+      ],
+      "answer": "By subtracting we remove the noise",
+      "explanation": "One wire sends T+ the other sends T-. At the end we subtract them and get back the original signal. By subtracting we remove the noise."
+    },
+    {
+      "id": 157,
+      "week": "Week 13",
+      "topic": "Input/Output",
+      "question": "Why is memory mapped I/O potentially a problem on a 32-bit machine but not a 64-bit machine?",
+      "choices": [
+        "64-bit machines are faster",
+        "64-bit machines have larger words so the transfers are faster",
+        "32-bit machines have less address space so you lose more of your memory"
+      ],
+      "answer": "32-bit machines have less address space so you lose more of your memory",
+      "explanation": "32 bits machines have less address space so you lose more of your memory."
+    },
+    {
+      "id": 158,
+      "week": "Week 13",
+      "topic": "Input/Output",
+      "question": "Can we combine DRAM, SRAM, Flash, and Disk technologies to get the best of all of them?",
+      "choices": [
+        "Yes",
+        "No",
+        "On average yes, but not all the time"
+      ],
+      "answer": "On average yes, but not all the time",
+      "explanation": "On average yes, but not all the time."
+    },
+    {
+      "id": 159,
+      "week": "Week 13",
+      "topic": "Input/Output",
+      "question": "What is the main problem with busses today?",
+      "choices": [
+        "Hard to build lots of wires",
+        "Hard to synchronize lots of wires",
+        "Hard to put lots of devices on a shared wire"
+      ],
+      "answer": "Hard to synchronize lots of wires",
+      "explanation": "Hard to synchronize lots of wires."
+    },
+    {
+      "id": 160,
+      "week": "Week 13",
+      "topic": "Input/Output",
+      "question": "Is missing an I/O interrupt a problem?",
+      "choices": [
+        "Yes, you will lose data",
+        "No, the data will still get there",
+        "Maybe, but it depends on what you're doing"
+      ],
+      "answer": "Maybe, but it depends on what you're doing",
+      "explanation": "Maybe, but it depends on what you're doing."
+    },
+    {
+      "id": 161,
+      "week": "Week 13",
+      "topic": "Input/Output",
+      "question": "When you are starting an app on your phone what do you care most about?",
+      "choices": [
+        "Latency",
+        "Throughput"
+      ],
+      "answer": "Latency",
+      "explanation": "Latency."
+    },
+    {
+      "id": 162,
+      "week": "Week 13",
+      "topic": "Input/Output",
+      "question": "Why would anyone ever use tape (storage)?",
+      "choices": [
+        "Cheaper",
+        "Faster",
+        "Lasts longer"
+      ],
+      "answer": "Lasts longer",
+      "explanation": "Tape lasts longer."
+    },
+    {
+      "id": 163,
+      "week": "Week 13",
+      "topic": "Input/Output",
+      "question": "What is the slowest part of the disk to access?",
+      "choices": [
+        "Center",
+        "All the same",
+        "Edge"
+      ],
+      "answer": "Center",
+      "explanation": "Center."
+    },
+    {
+      "id": 164,
+      "week": "Week 13",
+      "topic": "Input/Output",
+      "question": "Stock exchanges need to detect new data with the absolute minimum latency. What is the best way?",
+      "choices": [
+        "Interrupts",
+        "Polling",
+        "DMA"
+      ],
+      "answer": "Polling",
+      "explanation": "Polling."
+    },
+    {
+      "id": 165,
+      "week": "Week 13",
+      "topic": "Input/Output",
+      "question": "What is the main benefit of DMA?",
+      "choices": [
+        "Easier to program",
+        "Allows interrupts to replace polling",
+        "Relieves the processor from having to manage the I/O"
+      ],
+      "answer": "Relieves the processor from having to manage the I/O",
+      "explanation": "Relieves the processor from having to manage the I/O."
+    },
+    {
+      "id": 166,
+      "week": "Week 13",
+      "topic": "Input/Output",
+      "question": "How can I have two PCIe devices in a computer if PCIe uses point-to-point links and not a shared bus?",
+      "choices": [
+        "Have to have multiple PCIe links and divide them up",
+        "You can't since they aren't shared",
+        "Have to have multiple PCIe controllers"
+      ],
+      "answer": "Have to have multiple PCIe links and divide them up",
+      "explanation": "Have to have multiple PCIe links and divide them up."
+    },
+    {
+      "id": 167,
+      "week": "Week 14",
+      "topic": "Parallelism",
+      "question": "What did processor 2 do while it was waiting for the lock?",
+      "choices": [
+        "Updated the balance",
+        "Keep checking the lock value",
+        "Computed the next value"
+      ],
+      "answer": "Keep checking the lock value",
+      "explanation": "Keep checking the lock value."
+    },
+    {
+      "id": 168,
+      "week": "Week 14",
+      "topic": "Parallelism",
+      "question": "How could having a 'lock' help with the synchronization problem?",
+      "choices": [
+        "It can make sure a processor finishes the whole update before another one starts",
+        "It can prevent anyone from updating the balance",
+        "It can't: you have to fix the ordering"
+      ],
+      "answer": "It can make sure a processor finishes the whole update before another one starts",
+      "explanation": "It can make sure a processor finishes the whole update before another one starts."
+    },
+    {
+      "id": 169,
+      "week": "Week 14",
+      "topic": "Parallelism",
+      "question": "Which was easier to build: the serial multiplier or the parallel one?",
+      "choices": [
+        "Serial multiplier",
+        "Both are equally difficult",
+        "Parallel multiplier"
+      ],
+      "answer": "Serial Multiplier",
+      "explanation": "Serial Multiplier."
+    },
+    {
+      "id": 170,
+      "week": "Week 14",
+      "topic": "Parallelism",
+      "question": "If cache 1 has a line that is modified and cache 2 tries to load that line from DRAM, what does cache 1 need to do?",
+      "choices": [
+        "Write it to DRAM and set the dirty bit",
+        "Write it to DRAM and clear the dirty bit",
+        "Write it to DRAM, set the dirty bit, and tell cache 2",
+        "Write it to DRAM, clear the dirty bit, and tell cache 2"
+      ],
+      "answer": "Write it to DRAM, clear the dirty bit, and tell cache 2",
+      "explanation": "Write it to DRAM, clear the dirty bit, and tell cache 2."
+    },
+    {
+      "id": 171,
+      "week": "Week 14",
+      "topic": "Parallelism",
+      "question": "How did cache 1 snooping help? (Cache 2 was trying to load data that cache 1 had modified)",
+      "choices": [
+        "The DRAM set the dirty bit",
+        "Cache 2 could directly access data from Cache 1",
+        "Cache 1 could tell Cache 2 that it had newer data and should wait for it"
+      ],
+      "answer": "Cache 1 could tell Cache 2 that it had newer data and should wait for it",
+      "explanation": "Cache 1 could tell Cache 2 that it had newer data and should wait for it."
+    },
+    {
+      "id": 172,
+      "week": "Week 14",
+      "topic": "Parallelism",
+      "question": "What does a lock lock?",
+      "choices": [
+        "It locks a variable so no other processor can update it",
+        "It locks the DRAM so no other processor can access it",
+        "It doesn't lock anything: all it does is serve as an indicator that other processors should not mess with the variable"
+      ],
+      "answer": "It doesn't lock anything: all it does is serve as an indicator that other processors should not mess with the variable",
+      "explanation": "It doesn't lock anything: all it does is serve as an indicator that other processors should not mess with the variable."
+    },
+    {
+      "id": 173,
+      "week": "Week 14",
+      "topic": "Parallelism",
+      "question": "Why might we not get the full 2x speedup from a dual-issue pipeline?",
+      "choices": [
+        "More hazards because more instructions in the pipeline",
+        "Clock speed is slower due to extra logic",
+        "Compiler can't fill all slots",
+        "All of the above"
+      ],
+      "answer": "all of the above",
+      "explanation": "All of the above."
+    },
+    {
+      "id": 174,
+      "week": "Week 14",
+      "topic": "Parallelism",
+      "question": "Why can't we increase frequency more?",
+      "choices": [
+        "Uses too much power; gets too hot",
+        "We can't reduce voltage to lower power",
+        "We keep putting more transistors on a chip so the total capacitance does not go down",
+        "All of the above"
+      ],
+      "answer": "all of the above",
+      "explanation": "All of the above."
+    },
+    {
+      "id": 175,
+      "week": "Week 14",
+      "topic": "Parallelism",
+      "question": "Why don't we check each cache line one after another and only use one comparator? (in a fully-associative cache)",
+      "choices": [
+        "Too complicated",
+        "Too slow"
+      ],
+      "answer": "Too slow",
+      "explanation": "Too slow."
+    },
+    {
+      "id": 176,
+      "week": "Week 14",
+      "topic": "Parallelism",
+      "question": "What is the problem with multiple processors sharing DRAM without cache coherence?",
+      "choices": [
+        "The DRAM is not setting the dirty bit",
+        "Cache 2 could directly access data from Cache 1",
+        "The caches don't communicate to know when they have to update the DRAM"
+      ],
+      "answer": "The caches don't communicate to know when they have to update the DRAM",
+      "explanation": "The caches don't communicate to know when they have to update the DRAM."
+    },
+    {
+      "id": 177,
+      "week": "Week 14",
+      "topic": "Parallelism",
+      "question": "How does the pipeline execute instructions in parallel if it only fetches one instruction at a time?",
+      "choices": [
+        "It uses a branch predictor to determine the next instruction",
+        "It keeps the previous 4 instructions in the pipeline while executing them",
+        "It's not really parallel execution because we only finish one per cycle"
+      ],
+      "answer": "It keeps the previous 4 instructions in the pipeline while executing them",
+      "explanation": "It keeps the previous 4 instructions in the pipeline while executing them."
+    },
+    {
+      "id": 178,
+      "week": "Week 14",
+      "topic": "Parallelism",
+      "question": "What was the problem when two processors both tried to update the bank balance at the same time?",
+      "choices": [
+        "The DRAM didn't write back from its cache to DRAM",
+        "Processor 2 didn't write back from its cache to DRAM",
+        "Processor 2 didn't wait for processor 1 to finish"
+      ],
+      "answer": "Processor 2 didn't wait for processor 1 to finish",
+      "explanation": "Processor 2 didn't wait for processor 1 to finish."
+    },
+    {
+      "id": 179,
+      "week": "Week 14",
+      "topic": "Parallelism",
+      "question": "Is a 4-core machine 4x faster for most programs?",
+      "choices": [
+        "Yes (duh, 4 times as many cores)",
+        "Depends on the program",
+        "No (need faster clock speed)"
+      ],
+      "answer": "Depends on the program",
+      "explanation": "Depends on the program."
+    },
+    {
+      "id": 180,
+      "week": "Week 14",
+      "topic": "Parallelism",
+      "question": "If you divide an image into 4 equal parts to process on 4 processors, will you have load balancing problems?",
+      "choices": [
+        "No. It is evenly divided",
+        "Maybe. It depends on how much work each piece is",
+        "Yes. Each piece will be a different amount of work"
+      ],
+      "answer": "Maybe. It depends on how much work each peace is",
+      "explanation": "Maybe. It depends on how much work each peace is."
+    },
+    {
+      "id": 181,
+      "week": "Week 14",
+      "topic": "Parallelism",
+      "question": "What would happen if you had 100 processors all trying to get the same lock?",
+      "choices": [
+        "The lock wouldn't work and you would have synchronization problems",
+        "99 of the processors would be waiting all the time",
+        "99 of the processors could work, but 1 would always have to wait"
+      ],
+      "answer": "99 of the processors would be waiting all the time",
+      "explanation": "99 of the processors would be waiting all the time."
+    },
+    {
+      "id": 182,
+      "week": "Week 14",
+      "topic": "Parallelism",
+      "question": "Could the bank synchronization error happen in such a way that you ended up with less money than you expected?",
+      "choices": [
+        "No, it can only give you more",
+        "Yes, if they were deposits instead",
+        "Yes, if they were in the other order"
+      ],
+      "answer": "Yes, if they were deposits instead",
+      "explanation": "Yes, if they were deposits instead."
+    },
+    {
+      "id": 183,
+      "week": "Week 14",
+      "topic": "Parallelism",
+      "question": "If 99.9% of a program can be parallelized, what is the best speedup you can get on an Nvidia Kepler processor with 1536 cores?",
+      "choices": [
+        "101",
+        "606",
+        "1000",
+        "1536"
+      ],
+      "answer": "606",
+      "explanation": "606."
+    },
+    {
+      "id": 184,
+      "week": "Week 14",
+      "topic": "Parallelism",
+      "question": "What is the benefit of executing instructions out-of-order?",
+      "choices": [
+        "More independent instructions for ILP",
+        "More complicated work for the compiler",
+        "Simpler pipeline",
+        "All of the above"
+      ],
+      "answer": "More independent instructions for ILP",
+      "explanation": "More independent instructions for ILP."
+    },
+    {
+      "id": 185,
+      "week": "Week 14",
+      "topic": "Parallelism",
+      "question": "ILP is really complicated, so why do we want it?",
+      "choices": [
+        "Execute instructions out of order",
+        "Add more ALUs to the pipeline",
+        "Support a double pipeline",
+        "Make programs run faster by doing more instructions at the same time"
+      ],
+      "answer": "Make programs run faster by doing more instructions at the same time",
+      "explanation": "Make programs run faster by doing more instructions at the same time."
+    },
+    {
+      "id": 186,
+      "week": "Week 14",
+      "topic": "Parallelism",
+      "question": "Why did we want to access the cache and TLB in parallel?",
+      "choices": [
+        "Faster",
+        "Simpler",
+        "Support page sharing"
+      ],
+      "answer": "Faster",
+      "explanation": "Faster."
+    },
+    {
+      "id": 187,
+      "week": "Week 14",
+      "topic": "Parallelism",
+      "question": "If you want to count the number of words on 4 processors, how many times would you need to guess a dividing point and walk back to the first space?",
+      "choices": [
+        "2",
+        "3",
+        "4"
+      ],
+      "answer": "3",
+      "explanation": "3."
+    },
+    {
+      "id": 188,
+      "week": "Week 14",
+      "topic": "Parallelism",
+      "question": "What did cache 1 do when it saw that cache 2 was trying to load data it had via snooping?",
+      "choices": [
+        "Set the invalid bit",
+        "Set the dirty bit and sent the data to cache 2",
+        "Wrote the data back to DRAM",
+        "Wrote the data back to DRAM and told cache 2 to wait for it"
+      ],
+      "answer": "Wrote the data back to DRAM and told cache 2 to wait for it",
+      "explanation": "Wrote the data back to DRAM and told cache 2 to wait for it."
+    },
+    {
+      "id": 189,
+      "week": "Week 14",
+      "topic": "Parallelism",
+      "question": "What is the most effective way to reduce power in a transistor?",
+      "choices": [
+        "Make them smaller (reduce capacitance)",
+        "Run them slower (reduce frequency)",
+        "Use a lower voltage",
+        "All of the above"
+      ],
+      "answer": "Use a lower voltage",
+      "explanation": "Use a lower voltage."
+    },
+    {
+      "id": 190,
+      "week": "Week 14",
+      "topic": "Parallelism",
+      "question": "If 90% of a program can run in parallel and I have 100,000 processors, how much faster can my program go?",
+      "choices": [
+        "10x",
+        "100x",
+        "100,000x"
+      ],
+      "answer": "10x",
+      "explanation": "10x."
+    },
+    {
+      "id": 191,
+      "week": "Week 14",
+      "topic": "Parallelism",
+      "question": "Could cache sharing in a multicore ever make the program go faster?",
+      "choices": [
+        "No, you always get less cache",
+        "Yes, less cache makes the cache faster",
+        "Yes, if the other program brings data into the cache that the first program will need later",
+        "No, multicores are never faster"
+      ],
+      "answer": "Yes, if the other program brings data into the cache that the first program will need later",
+      "explanation": "Yes, if the other program brings data into the cache that the first program will need later."
+    },
+    {
+      "id": 192,
+      "week": "Week 14",
+      "topic": "Parallelism",
+      "question": "The static dual-issue pipeline could do one ld/st and one other instruction at the same time. How often do you expect both pipelines to be full?",
+      "choices": [
+        "All the time",
+        "2/3 of the time",
+        "1/2 of the time",
+        "1/3 of the time"
+      ],
+      "answer": "1/2 of the time",
+      "explanation": "1/2 of the time."
+    }
+  ]
+}
