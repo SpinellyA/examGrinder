@@ -174,37 +174,33 @@ function Header({ right, theme, onToggleTheme }) {
 }
 
 function ImportScreen({ onImport, theme, onToggleTheme }) {
-  const [drag, setDrag] = useState(false);
-  const ref = useRef();
-  const read = (file) => {
-    if (!file) return;
-    const r = new FileReader();
-    r.onload = (e) => {
-      try { const d = JSON.parse(e.target.result); onImport(d.questions ?? d); }
-      catch { alert("Could not parse JSON. Check the file format."); }
-    };
-    r.readAsText(file);
-  };
+  // Automatically fetch the JSON file when the component loads
+  useEffect(() => {
+    fetch("./questions.json")
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        return response.json();
+      })
+      .then((data) => {
+        // Automatically import the questions using your existing callback
+        onImport(data.questions ?? data);
+      })
+      .catch((error) => {
+        console.error("Error loading questions.json:", error);
+        alert("Could not load questions.json automatically. Make sure it is in your public folder.");
+      });
+  }, [onImport]);
+
   return (
     <div className="screen" style={{ paddingTop: 48 }}>
       <Header theme={theme} onToggleTheme={onToggleTheme} />
-      <div className="card">
-        <div
-          className={`dz ${drag ? "drag" : ""}`}
-          onDragOver={(e) => { e.preventDefault(); setDrag(true); }}
-          onDragLeave={() => setDrag(false)}
-          onDrop={(e) => { e.preventDefault(); setDrag(false); read(e.dataTransfer.files[0]); }}
-          onClick={() => ref.current.click()}
-        >
-          <i className="ti ti-file-upload" style={{ fontSize: 40, color: "var(--color-text-secondary)" }} aria-hidden="true" />
-          <p className="ts" style={{ marginTop: 14, color: "var(--color-text-secondary)" }}>
-            Drop <strong>questions.json</strong> here, or click to browse
-          </p>
-          <p className="tx tm" style={{ marginTop: 6 }}>
-            {"{ questions: [{ id, week, topic, question, choices[], answer, explanation }] }"}
-          </p>
-        </div>
-        <input ref={ref} type="file" accept=".json" style={{ display: "none" }} onChange={(e) => read(e.target.files[0])} />
+      <div className="card" style={{ textAlign: "center", padding: "40px 20px" }}>
+        <i className="ti ti-loader" style={{ fontSize: 40, color: "var(--color-text-secondary)" }} aria-hidden="true" />
+        <p className="ts" style={{ marginTop: 14, color: "var(--color-text-secondary)" }}>
+          Loading <strong>questions.json</strong> automatically...
+        </p>
       </div>
       <p className="tx tm tc" style={{ marginTop: 12 }}>
         Your data is saved locally — just import once and you're set.
